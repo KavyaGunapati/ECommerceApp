@@ -1,0 +1,21 @@
+﻿@page 
+@model ECommerceApp.Pages.Categories.IndexModel
+<h2>Categories</h2>
+<table class="table">
+    <thead>
+        <tr><th>Name</th><th>Actions</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Categories)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>
+                    <a asp-page="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-page="Create" class="btn btn-primary">Create New</a>

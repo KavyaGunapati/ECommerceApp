@@ -1,0 +1,47 @@
+﻿@page "{id:int?}"
+@using ECommerceApp.Models
+@model ECommerceApp.Pages.Products.IndexModel
+@{
+    ViewData["Title"] = "Products List"; 
+}
+<h1>Products</h1>
+<form method="get">
+    <input type="text" name="SearchTerm" value="@Model.SearchTerm" />
+    <button type="submit" class="btn btn-primary">Search</button>
+    <a asp-page="Index" class="btn btn-secondary">Clear</a>
+</form>
+<p>Sort By:
+    <a asp-page="./Index" asp-route-SortOrder="name_desc">Name</a> |
+    <a asp-page="./Index" asp-route-SortOrder="price_asc">Price</a> |
+    <a asp-page="./Index" asp-route-SortOrder="category_desc">Category</a>
+</p>
+
+    <button  asp-page="./Create" class="btn btn-primary" >Create</button>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var product in Model.Products)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Price</td>
+                <td>@product.CategoryId</td>
+                <td>
+                    <button asp-controller="Products" asp-page="Edit" asp-route-id="@product.Id" class="btn btn-primary" >Edit</button>
+                    <button asp-controller="Products" asp-page="Details" asp-route-id="@product.Id" class="btn btn-info">Details</button>
+                    <button asp-controller="Products" asp-page="Delete" asp-route-id="@product.Id" class="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-page="./Index" asp-route-pageNumber="@(Model.PageNumber-1)">Prev</a>
+<a asp-page="./Index" asp-route-pageNumber="@(Model.PageNumber+1)">Next</a>

@@ -1,0 +1,30 @@
+﻿@page "{id:int}"
+@model ECommerceApp.Pages.Products.EditModel
+@{
+    ViewData["Title"] = "Edit Product";
+}
+<h1>Edit Product</h1>
+<form method="post">
+    <div class="mt-3">
+        <label asp-for="Product.Name" class="form-label">Name</label>
+        <input asp-for="Product.Name" class="form-control" />
+        <span asp-validation-for="Product.Name" class="text-danger"></span>
+    </div>
+    <div class="mt-3">
+        <label asp-for="Product.Price" class="form-label">Price</label>
+        <input asp-for="Product.Price" class="form-control" />
+        <span asp-validation-for="Product.Price" class="text-danger"></span>
+    </div>
+    <div class="mt-3">
+        <label asp-for="Product.CategoryId" class="form-label">CategoryId</label>
+        <input asp-for="Product.CategoryId" type="number" class="form-control" />
+        <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+    </div>
+    <div class="mt-3">
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a asp-page="./Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
